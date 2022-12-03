@@ -1,5 +1,5 @@
 
-public class TimeDuration {
+public class TimeDuration implements Comparable<TimeDuration> {
 
 	private static final Exception BadBadValueException = new Exception("Number of Seconds must be a positive integer");
 	int hours;
@@ -31,15 +31,33 @@ public class TimeDuration {
 			return "0s";
 		}
 		else if(this.hours != 0) {
-			string += hours + "h";
+			string += hours + "h ";
 		}
-		string += minutes + "m";
-		string += seconds + "s";
+		string += minutes + "m ";
+		string += seconds + "s ";
 		return string;
 	}
 	
 	
 	public int getNumberOfSeconds() {
 		return this.numberOfSeconds;
+	}
+	
+	
+	public static void main(String[] args) throws Exception {
+		TimeDuration example = new TimeDuration(0);
+		TimeDuration example1 = new TimeDuration(732);
+		TimeDuration example2 = new TimeDuration(7242);
+		
+		System.out.println(example.toString());
+		System.out.println(example1.toString());
+		System.out.println(example2.toString());
+	
+	}
+
+
+	@Override
+	public int compareTo(TimeDuration time) {
+		return (int)(this.numberOfSeconds - time.getNumberOfSeconds());
 	}
 }
